@@ -1,0 +1,16 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:11.2'
+  app:
+    container_name: app
+    ports:
+      - ${PORT}:${PORT}
+    build:
+      dockerfile: 'Dockerfile.dev'
+      context: .
+    env_file:
+      - .env
+    volumes: 
+      - ./:/app
+      - /app/node_modules

@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '10'
+dist: trusty
+sudo: false
+
+services: 
+  - docker
+
+before_install:
+  - docker build -t matexq/app .
+  - docker run -d -p 9000:9000 matexq/app
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: WfTC/BJZXcoCtbdRdxbPMEDPymvffvWgvhsVX9mWLtIy+8NiUJroSfFWPkWTRB0cqGAKxbKKIIUjZunpoNtt06dtmyIOMqS6U5TP1r+h9rsBjHxuZLKOkNqAt8NR+n1lcEKUCArsGXalCJZc1gmS7R7nTBPakEmhYbehYpUbc3KtSQQ41VD5Y99Asnsx0pKI5Hvt5eyx0zgcwNsSPVkbFOgv4oHiItV8pvRllYh3coKNB8HlovCiBEer/hC1yDt9tGTaNA7FVX2wVWydvHjc4uO2mFWcnGiyZKb0tRXYXHiEMD+tQHcsXTupvvs1ueatVC47av3boU0EVQ9+3gGlaxXgmVjXuA5KmCSCRtGFdiqlAaPahBJ+y+ixM3nsr9/kMv3/xdjlG8+RZq4t+eJXoWrJLuLPKzCZe9T3AuZDZzKLRlc5MSSw4iAMheJQ2tyDMNj0K0W/3Y8l8HPjnc4qJmwguk4KQwkBEPamC/j58b7J510CmhySadnh4hVHIhIuZlKgiR2DDeBS3MlgBhddTKAla2V4tkp6OzjMVnXJ+WpYbWksLC1I8fDj0XRYsucEM2OmBkTBO4IDnJz0eT2U0JSks0leHFPjxBNdAjHVmiThGSYuJgGGBfzmu4HzWrLvAEIcIDkSW7PUQcgRb4dIlQPoQ65NLPkifuD6sSdsubQ=
+  app: netguru-movie
+  on:
+    repo: MatexQ/recruitment-netguru
